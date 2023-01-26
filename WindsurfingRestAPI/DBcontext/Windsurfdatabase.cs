@@ -21,6 +21,9 @@ namespace WindsurfingRestAPI.DBcontext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {       //many to many configuration 
             modelBuilder.ApplyConfiguration(new SpotsConfiguration());
+            //database seeding while creation , we can avoid this method anyway ! let's try to be professionals :p 
+           // modelBuilder.Entity<Spot>().HasData(new Spot("ELGOUNA", "EGYPT", "most popular luxurious windsurfing spot "), new Spot("Mahdia beach" , "Tunisia","My Hometown Windsurfing spot"));
+           // modelBuilder.Entity<Windsurfer>().HasData(new Windsurfer("baha mestiri", "23", "Tunisian") { ID = 0 }, new Windsurfer("Adem Zarbout", "20", "Tunisian") { ID=1}) ; 
 
         }
     }
