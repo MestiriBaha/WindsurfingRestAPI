@@ -14,7 +14,8 @@ namespace WindsurfingRestAPI.Profiles
             .ForMember(dest => dest.Age, opt =>
                 opt.MapFrom(src => src.Birthday.GetCurrentAge()))
             .ForMember(dest => dest.Nationality, opt =>
-                opt.MapFrom(src => src.Nationality));
+                opt.MapFrom(src => src.Nationality))
+            .ForMember(dest=>dest.password,opt => opt.MapFrom(src => src.password));
 
 
 
