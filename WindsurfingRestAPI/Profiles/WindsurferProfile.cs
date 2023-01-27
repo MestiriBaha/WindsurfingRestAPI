@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using WindsurfingRestAPI.Models;
-using WindsurfingRestAPI.Entities; 
+using WindsurfingRestAPI.Entities;
+using WindsurfingRestAPI.Helpers; 
 
 namespace WindsurfingRestAPI.Profiles
 {
@@ -8,10 +9,16 @@ namespace WindsurfingRestAPI.Profiles
     {
         public WindsurferProfile() {
             CreateMap<Entities.Windsurfer, Models.WindsurferDTO>()
-                .ForMember(mapp => mapp.FirstName)
+                .ForMember(dest => dest.FullName, opt =>
+                opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
+            .ForMember(dest => dest.Age, opt =>
+                opt.MapFrom(src => src.Birthday.GetCurrentAge()))
+            .ForMember(dest => dest.Nationality, opt =>
+                opt.MapFrom(src => src.Nationality));
 
 
-                }
-            
+
+        }
+
     }
 }
