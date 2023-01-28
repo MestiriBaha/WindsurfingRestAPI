@@ -8,6 +8,7 @@ namespace WindsurfingRestAPI.Services
         void AddSurfer(Windsurfer windsurfer) ; 
         void RemoveSurfer(Windsurfer windsurfer) ;  
         void UpdateSurfer ( Windsurfer windsurfer) ;
+        //******************************
         Task<IEnumerable<Spot>> GetSpotsAsync();
         Task<IEnumerable<Spot>> GetSpotsAsync(Windsurfer windsurfer);
 

@@ -69,7 +69,7 @@ namespace WindsurfingRestAPI.Services
         public async Task<IEnumerable<Spot>> GetSpotsAsync(Windsurfer windsurfer)
         {
                     if (  windsurfer == null ) { throw new ArgumentNullException(nameof(windsurfer)); } 
-                    return await _context.Windsurfers.SelectMany(x => x.Spots).ToListAsync();   
+                    return await _context.Windsurfers.Where(x=> x.FirstName == windsurfer.FirstName ).SelectMany(x => x.Spots).ToListAsync();   
          }
 
 
