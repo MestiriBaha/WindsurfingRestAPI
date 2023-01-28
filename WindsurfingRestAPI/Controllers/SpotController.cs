@@ -29,7 +29,6 @@ namespace WindsurfingRestAPI.Controllers
         {
             throw new NotImplementedException(); 
         }
-        [HttpPost]
 
 
     }

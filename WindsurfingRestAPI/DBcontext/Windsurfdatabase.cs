@@ -10,8 +10,14 @@ namespace WindsurfingRestAPI.DBcontext
         //we have to be careful when overriding methods in using the right access identifiers " protected in the parent method " , you can't override it to public ;) !! 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;
-              Initial Catalog=WindsurfDB;Integrated Security=true");
+            var configuration = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json")
+                .Build();
+
+            var connectionString = configuration.GetConnectionString("AppDb");
+            optionBuilder.UseSqlServer(connectionString);
+            //optionBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=WindsurfDB;Integrated Security=true");
             base.OnConfiguring(optionBuilder);
         }
         //public Windsurfdatabase(DbContextOptions<Windsurfdatabase> options) : base(options)
