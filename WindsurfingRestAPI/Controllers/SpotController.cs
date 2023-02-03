@@ -17,17 +17,21 @@ namespace WindsurfingRestAPI.Controllers
             _windsurfingRepository = windsurfingRepository ?? throw new ArgumentNullException(nameof(WindsurfingRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }   
-        [HttpGet("api/spots")]   
+        [HttpGet("api/spots")]
         public async Task<ActionResult<IEnumerable<SpotDTO>>> GetSpotsAsync()
         {
+          //  throw new Exception("testing exceptipn "); 
             var result =   await _windsurfingRepository.GetSpotsAsync()  ;
             var resultDTO = _mapper.Map<IEnumerable<SpotDTO>>(result) ;
             return Ok(resultDTO); 
         }
-        [HttpGet("api/{windsurferID}/spots")]
-        Task<IEnumerable<SpotDTO>> GetSpotsofWindsurfer (int windsurfer)
+        [HttpGet("api/spots/{windsurferID}")]
+        public async Task<ActionResult<IEnumerable<SpotDTO>>> GetSpotsofWindsurfer (int windsurferid)
         {
-            throw new NotImplementedException(); 
+            if (! await _windsurfingRepository.IswindsurferExistsAsync(windsurferid)) { return NotFound();  } ; 
+           var result= await _windsurfingRepository.GetSpotsAsync(windsurferid) ;
+            var resultDTO = _mapper.Map<IEnumerable<SpotDTO>>(result) ;
+            return Ok(resultDTO);
         }
 
 

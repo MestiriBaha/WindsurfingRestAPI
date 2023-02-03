@@ -66,11 +66,15 @@ namespace WindsurfingRestAPI.Services
         {
             //No code for this implementation which is obvious ! 
         }
-        public async Task<IEnumerable<Spot>> GetSpotsAsync(Windsurfer windsurfer)
+        public async Task<IEnumerable<Spot>> GetSpotsAsync(int windsurferid)
         {
-                    if (  windsurfer == null ) { throw new ArgumentNullException(nameof(windsurfer)); } 
-                    return await _context.Windsurfers.Where(x=> x.FirstName == windsurfer.FirstName ).SelectMany(x => x.Spots).ToListAsync();   
+                   // if (  windsurfer == null ) { throw new ArgumentNullException(nameof(windsurfer)); } 
+                    return await _context.Windsurfers.Where(x=> x.ID ==windsurferid ).SelectMany(x => x.Spots).ToListAsync();   
          }
+        public async Task<Boolean> IswindsurferExistsAsync(int windsurferid)
+        {
+            return await _context.Windsurfers.Where(_x => _x.ID ==windsurferid).AnyAsync();
+        }
 
 
     }

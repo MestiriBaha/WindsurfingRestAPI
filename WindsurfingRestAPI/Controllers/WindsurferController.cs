@@ -18,7 +18,7 @@ namespace WindsurfingRestAPI.Controllers
             this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         //we have to be able to right the exact paths for our API !! 
-        [HttpGet("api/Windsurfers/{SPOTname}")]
+        [HttpGet("api/windsurfers/{SPOTname}")]
         public async Task<ActionResult<WindsurferDTO>> GetAllSPOTWindsurfers(string SPOTname)
         {
             if ( SPOTname == null ) { return  NotFound();  }
@@ -27,7 +27,7 @@ namespace WindsurfingRestAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<WindsurferDTO>>(exactwindsurfers));    
 
         }
-        [HttpPost("api/Windsurfer")]
+        [HttpPost("api/windsurfers")]
         public async Task<IActionResult> AddWindsurfer (WindsurferDTO newWindsurfer)
         {
             var originalentity = _mapper.Map<Entities.Windsurfer>(newWindsurfer); 

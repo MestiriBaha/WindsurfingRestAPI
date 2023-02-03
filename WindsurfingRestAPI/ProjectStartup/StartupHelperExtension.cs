@@ -10,7 +10,7 @@ namespace WindsurfingRestAPI.ProjectStartup
 
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(configuration => configuration.ReturnHttpNotAcceptable = true).AddXmlDataContractSerializerFormatters(); 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IWindsurfingRepository, WindsurfingRepository>();
@@ -29,6 +29,15 @@ namespace WindsurfingRestAPI.ProjectStartup
             if (webApplication.Environment.IsDevelopment())
             {
                 webApplication.UseDeveloperExceptionPage(); 
+            }
+            else
+            {
+                webApplication.UseExceptionHandler(optionbuilder =>
+                {
+                    optionbuilder.Run(async context => { context.Response.StatusCode = 500;
+                        await context.Response.WriteAsync("an unexpected error has occured , try again later ! ");
+                    }); 
+                });
             }
             webApplication.UseAuthorization();
             webApplication.MapControllers(); 
