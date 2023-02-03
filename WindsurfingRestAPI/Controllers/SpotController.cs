@@ -24,8 +24,8 @@ namespace WindsurfingRestAPI.Controllers
             var resultDTO = _mapper.Map<IEnumerable<SpotDTO>>(result) ;
             return Ok(resultDTO); 
         }
-        [HttpGet("api/{windsurfer")]
-        Task<IEnumerable<SpotDTO>> GetSpotsofWindsurfer (Windsurfer windsurfer)
+        [HttpGet("api/{windsurferID}/spots")]
+        Task<IEnumerable<SpotDTO>> GetSpotsofWindsurfer (int windsurfer)
         {
             throw new NotImplementedException(); 
         }

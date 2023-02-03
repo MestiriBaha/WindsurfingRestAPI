@@ -18,7 +18,7 @@ namespace WindsurfingRestAPI.Entities
         [Required]
          public string password { get; set;  }
         [Required]
-        public DateTimeOffset Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         [Required]
 
         public string Nationality { get; set; }

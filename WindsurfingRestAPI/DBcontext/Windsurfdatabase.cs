@@ -15,15 +15,15 @@ namespace WindsurfingRestAPI.DBcontext
                .AddJsonFile("appsettings.json")
                 .Build();
 
-            var connectionString = configuration.GetConnectionString("AppDb");
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
             optionBuilder.UseSqlServer(connectionString);
             //optionBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=WindsurfDB;Integrated Security=true");
             base.OnConfiguring(optionBuilder);
         }
-        //public Windsurfdatabase(DbContextOptions<Windsurfdatabase> options) : base(options)
-        //{
+        public Windsurfdatabase(DbContextOptions<Windsurfdatabase> options) : base(options)
+        {
 
-        //}
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {       //many to many configuration 
             modelBuilder.ApplyConfiguration(new SpotsConfiguration());

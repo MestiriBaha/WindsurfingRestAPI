@@ -18,7 +18,7 @@ namespace WindsurfingRestAPI.Controllers
             this._mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         //we have to be able to right the exact paths for our API !! 
-        [HttpGet("api/Windsurfer/{SPOTname}")]
+        [HttpGet("api/Windsurfers/{SPOTname}")]
         public async Task<ActionResult<WindsurferDTO>> GetAllSPOTWindsurfers(string SPOTname)
         {
             if ( SPOTname == null ) { return  NotFound();  }

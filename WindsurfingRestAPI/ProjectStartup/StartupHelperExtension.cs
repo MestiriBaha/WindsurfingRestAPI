@@ -11,6 +11,8 @@ namespace WindsurfingRestAPI.ProjectStartup
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IWindsurfingRepository, WindsurfingRepository>();
             builder.Services.AddDbContext<Windsurfdatabase>(options =>
             {
